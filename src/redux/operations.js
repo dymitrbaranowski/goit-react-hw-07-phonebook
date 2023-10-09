@@ -1,0 +1,43 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://64f5a85d2b07270f705d815e.mockapi.io';
+
+export const fetchContacts = createAsyncThunk(
+  'contacts/fetchAll',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/contacts');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addContacts = createAsyncThunk(
+  'contacts/addContacts',
+  async ({ name, number }, thunkAPI) => {
+    try {
+      const response = await axios.post('/contacts', { name, number });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteContacts = createAsyncThunk(
+  'contacts/deleteContacts',
+  async (contactId, thunkAPI) => {
+    try {
+      // Надсилання DELETE-запиту на `/contacts/${contactId}`
+      const response = await axios.delete(`/contacts/${contactId}`);
+      // Повернення отриманих даних
+      return response.data;
+    } catch (error) {
+      // У разі помилки, відхилення дії із зазначенням помилки
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

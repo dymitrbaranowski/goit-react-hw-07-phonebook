@@ -3,9 +3,8 @@ import { nanoid } from '@reduxjs/toolkit';
 import propTypes from 'prop-types';
 import { Form, FormBtn, FormItem } from './ContactForm.styled';
 
-
 import { useSelector, useDispatch } from 'react-redux';
-import { getVisibleContacts } from 'redux/selectors';
+import { selectVisibleContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactsSlice';
 
 export const ContactForm = () => {
@@ -15,7 +14,7 @@ export const ContactForm = () => {
   const nameInputId = nanoid();
   const numberInputId = nanoid();
 
-  const contacts = useSelector(getVisibleContacts);
+  const contacts = useSelector(selectVisibleContacts);
   const dispatch = useDispatch();
 
   const handleFormSubmit = e => {

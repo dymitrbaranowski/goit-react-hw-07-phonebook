@@ -13,12 +13,10 @@ import {
 
 export const store = configureStore({
   reducer: {
-    contacts: contactsReducer, 
-    filter: filterReducer, 
-    },
-    
+    contacts: contactsReducer,
+    filter: filterReducer,
+  },
 
-  
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

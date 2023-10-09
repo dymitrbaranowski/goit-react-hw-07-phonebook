@@ -3,11 +3,11 @@ import React from 'react';
 import { ContactListItemBtn } from './ContactList.styled';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getVisibleContacts } from 'redux/selectors';
+import { selectVisibleContacts } from 'redux/selectors';
 import { removeContact } from 'redux/contactsSlice';
 
 export const ContactList = () => {
-  const contacts = useSelector(getVisibleContacts);
+  const contacts = useSelector(selectVisibleContacts);
   const dispatch = useDispatch();
   const handleDelete = () => dispatch(removeContact());
   return (
@@ -17,7 +17,11 @@ export const ContactList = () => {
           {contact.name + ' : ' + contact.number}
           {
             // Кнопка удаления контакта
-            <ContactListItemBtn type="button" name="delete" onClick={handleDelete}>
+            <ContactListItemBtn
+              type="button"
+              name="delete"
+              onClick={handleDelete}
+            >
               delete
             </ContactListItemBtn>
           }
@@ -25,6 +29,4 @@ export const ContactList = () => {
       ))}
     </ul>
   );
-  
 };
-
