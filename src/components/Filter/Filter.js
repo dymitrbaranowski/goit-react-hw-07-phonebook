@@ -2,12 +2,10 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { FilterName } from './Filter.styled';
 
-import { nanoid } from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectFilter } from 'redux/selectors';
 import { changeFilter } from 'redux/filterSlice';
 
-const filterInputId = nanoid();
 
 export const Filter = () => {
   const value = useSelector(selectFilter);
@@ -27,7 +25,6 @@ export const Filter = () => {
           type="text"
           value={value}
           onChange={onChange}
-          id={filterInputId}
         />
       </label>
     </div>

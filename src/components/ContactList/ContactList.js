@@ -4,23 +4,21 @@ import { ContactListItemBtn } from './ContactList.styled';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { selectVisibleContacts } from 'redux/selectors';
-import { removeContact } from 'redux/contactsSlice';
+import { deleteContacts } from '../../redux/operations';
 
 export const ContactList = () => {
   const contacts = useSelector(selectVisibleContacts);
   const dispatch = useDispatch();
-  const handleDelete = () => dispatch(removeContact());
   return (
     <ul>
       {contacts.map(contact => (
         <li key={contact.id}>
           {contact.name + ' : ' + contact.number}
           {
-            // Кнопка удаления контакта
             <ContactListItemBtn
               type="button"
               name="delete"
-              onClick={handleDelete}
+              onClick={() => dispatch(deleteContacts(contact.id))}
             >
               delete
             </ContactListItemBtn>
